@@ -1,0 +1,18 @@
+paths:
+  raw: ${hydra:runtime.cwd}/../../logs_pickled
+  processed: ${hydra:runtime.cwd}/../logs_processed
+  tokenized: ${hydra:runtime.cwd}/../logs_tokenized
+
+params_data_prepare:
+  list_of_logs: ["GR", "RDEP", "DTC", "NPHI", "RHOB"]
+  log_resistivity: True
+  cols_resistivity: ['RSHA', 'RMED', 'RDEP',  'RMIC', 'RXO']
+  scaler: standard
+  len_of_patch: [20, 50, 100]
+
+log_info:
+  experiment_name: data_processed_${params_data_prepare.len_of_patch}_${params_data_prepare.scaler}_Aramco
+
+hydra:
+  run:
+    dir: '.'

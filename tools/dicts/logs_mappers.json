@@ -1,0 +1,7 @@
+{
+  "GR": ["GR_ED_DM", "GR_1"],
+  "RHOB": ["RHOB_ED_DM", "RHOBR_1"],
+  "NPHI": ["TNPL_ED_DM", "NPL_ED_DM", "NPHI_1"],
+  "DTC": ["DT_ED_DM", "DT", "DTCO_ED_DM", "DTR_1"],
+  "RDEP": ["IL4_ED_DM", "ATRD_ED_DM", "ILD_ED_DM", "ILD", "ILD_1"]
+}
