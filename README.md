@@ -30,7 +30,7 @@ python3 -m venv /Users/antonvoskresenskii/Documents/venvs/alpha
 
 Activate the virtual environment:
 ```bash
-source /Users/antonvoskresenskii/Documents/venvs/alpha/bin/activate
+activat moment
 ```
 
 Upgrade pip:
