@@ -25,7 +25,7 @@ cd foundation
 
 Create a virtual environment:
 ```bash
-python3 -m venv /Users/antonvoskresenskii/Documents/venvs/alpha
+python3 -m venv alpha
 ```
 
 Activate the virtual environment:
