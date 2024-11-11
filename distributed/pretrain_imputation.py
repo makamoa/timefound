@@ -183,7 +183,6 @@ for step in tqdm(range(max_steps)):
 
     # Validation Step
     model.eval()
-    ...
 
     # Micro Batch
     model.train()

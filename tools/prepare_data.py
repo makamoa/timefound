@@ -82,12 +82,6 @@ if __name__ == "__main__":
     # get list of wells in the folder
     list_of_wells = os.listdir(path_to_data)
 
-    # test for one well
-    df_test = prepare_training_well(
-        path_to_file=os.path.join(path_to_data, list_of_wells[0]),
-        path_to_results=path_to_results,
-    )
-
     # prepare training data
     prepare_training_data(path_to_data, path_to_results)
 
