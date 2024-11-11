@@ -1,4 +1,4 @@
-# MOMENT Model Pre-Training
+# Model Pre-Training
 
 This project provides a script for pre-training the MOMENT model on well-log data. The script includes features for distributed training, DeepSpeed optimization, checkpointing, and automatic resume functionality for interrupted training sessions.
 
@@ -13,6 +13,7 @@ Ensure you have the following installed:
 You can install the necessary dependencies via:
 ```bash
 pip install -r requirements.txt
+```
 
 ## Project Structure
 
@@ -50,3 +51,45 @@ Argument	Type	Description
 --rank	int	Rank for distributed training. Default: 0.
 --world_size	int	Total number of devices for distributed training. Default: torch.cuda.device_count().
 
+## Running the Pre-Training Script
+
+### Run Directly with Command-Line Arguments
+
+```
+python pretrain.py --batch_size 4 --max_epochs 10 --root_dir /path/to/data --results_dir /path/to/results
+```
+### Run with a Config File
+
+Create a configuration file, e.g., config.json:
+
+{
+    "batch_size": 4,
+    "max_epochs": 10,
+    "root_dir": "/path/to/data",
+    "results_dir": "/path/to/results"
+}
+
+Then run the script with the --config argument:
+
+```
+python pretrain.py --config config.json
+```
+
+## Resume Training from Checkpoint
+
+If training is interrupted, use the --resume_checkpoint argument to specify the path to the checkpoint file. This will resume training from the last saved state.
+
+```
+python pretrain.py --config config.json --resume_checkpoint /path/to/results/checkpoint_epoch_10.pt
+```
+
+## Checkpoints and Logging
+
+The script saves a checkpoint every 10 epochs in the specified results_dir. Checkpoints contain the model and optimizer states, allowing you to resume training from the last checkpoint.
+The configuration file is also saved in the results directory, making it easy to restart training with the same settings.
+
+## Additional Notes
+
+This script uses DeepSpeed for distributed training, which is recommended for scaling across multiple GPUs. Ensure that DeepSpeed is correctly installed and configured on your machine.
+Use mixed-precision (AMP) training to reduce memory usage and potentially improve performance on supported hardware.
+Make sure torch.distributed.launch or a similar distributed launch utility is used when training on multiple nodes.
