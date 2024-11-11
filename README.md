@@ -1,98 +1,52 @@
+# MOMENT Model Pre-Training
 
-# Alpha Series
+This project provides a script for pre-training the MOMENT model on well-log data. The script includes features for distributed training, DeepSpeed optimization, checkpointing, and automatic resume functionality for interrupted training sessions.
 
-## Getting Started
+## Prerequisites
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+Ensure you have the following installed:
+- Python 3.8 or later
+- PyTorch
+- DeepSpeed
+- Other dependencies (e.g., `momentfm`, `torchvision`, etc.)
 
-
-
-
-## Installation
-### Prerequisites
-
-- Python 3
-- pip
-- git
-
-### Geting repository
+You can install the necessary dependencies via:
 ```bash
-git clone https://github.com/makamoa/foundation.git
-cd foundation
-```
-
-### Setting Up the Environment
-
-Create a virtual environment:
-```bash
-python3 -m venv alpha
-```
-
-Activate the virtual environment:
-```bash
-activat moment
-```
-
-Upgrade pip:
-```bash
-pip install --upgrade pip
-```
-
-Navigate to the root folder of the project via terminal and install the required packages:
-
-```bash
-pip install -r requirements.txt --no-cache-dir
-```
-
-## Testing
-
-This project uses `pytest` for testing.
-
-Then, you can run the tests with the following command:
-
-```bash
-pytest --log-cli-level=INFO -s
-```
-
-The `--log-cli-level=INFO` option sets the logging level to INFO, meaning that all INFO, WARNING, ERROR, and CRITICAL messages will be displayed in the console. The `-s` option disables output capturing, allowing you to see print statements output for passing tests.
-
-This will run all the tests in the project. If you want to run a specific test, you can specify the file name:
-
-```bash
-pytest tests/test_notebooks.py --log-cli-level=INFO -s
-pytest tests/test_modules.py --log-cli-level=INFO -s
-pytest tests/test_formatting.py --log-cli-level=INFO -s
-```
-
-## Test coverage
-
-```bash
-pytest --cov=./
-pytest --cov=./ --cov-report html
-```
-
-## Using the Notebook Processing Script
-
-The `utils.py` script is used to process Jupyter notebooks in a specified directory. It performs two main tasks:
-1. The script updates the format of each notebook to at least version 4.5
-2. The script assigns a unique ID to each cell in the notebooks
-
-### How to Use
-
-To use the script, you need to run it from the root directory:
-
-```python
-python3 src/utils.py
-```
-
-## Using the linter
-
-black notebooks/
+pip install -r requirements.txt
 
 ## Project Structure
 
-- notebooks/: Contains Jupyter notebooks for exploratory data analysis and model training
-- src/: Contains the source code for the project
-- tests/: Contains test scripts
-- data/: Contains data files
-- config/: Contains configuration files
+    pretrain.py: The main script for pre-training the MOMENT model.
+    dataset.py: Defines the WellLogDataset class for loading the well-log data.
+    common.py: Contains utility functions, including get_train_args.
+    results/: Directory where model checkpoints and configuration files are saved by default.
+    config.json: Optional configuration file to specify hyperparameters and settings.
+
+## Usage
+
+The pretrain.py script supports various command-line arguments for configuring the training process. You can pass these parameters directly via command line or through a JSON configuration file.
+
+Command-Line Arguments
+Argument	Type	Description
+--config	str	Path to JSON config file with hyperparameters.
+--log_dir	str	Directory to save logs.
+--results_dir	str	Directory to save model checkpoints and config file. Default: results/.
+--resume_checkpoint	str	Path to checkpoint to resume training.
+--seed	int	Seed for random number generation. Default: 13.
+--batch_size	int	Batch size for each device. Default: 2.
+--total_token_batch_size	int	Total token batch size across devices. Default: 65536.
+--max_lr	float	Maximum learning rate. Default: 6e-4.
+--min_lr	float	Minimum learning rate after warmup. Default: 6e-5.
+--grad_clip_value	float	Gradient clipping value. Default: 1.0.
+--warmup_steps	int	Number of warmup steps for learning rate scheduler.
+--max_steps	int	Maximum number of training steps. Default: 1000.
+--max_epochs	int	Maximum number of epochs. Default: 1.
+--check_every_step	int	Log every n steps. Default: 1.
+--use_amp	bool	Enable mixed-precision (AMP) training. Default: True.
+--data_stride_len	int	Length of the data stride for each batch. Default: 512.
+--n_channels	int	Number of data channels in the input. Default: 5.
+--mask_ratio	float	Ratio of masked patches for training. Default: 0.3.
+--root_dir	str	Path to the data root directory.
+--rank	int	Rank for distributed training. Default: 0.
+--world_size	int	Total number of devices for distributed training. Default: torch.cuda.device_count().
+
