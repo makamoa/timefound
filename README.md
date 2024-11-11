@@ -27,29 +27,30 @@ pip install -r requirements.txt
 
 The pretrain.py script supports various command-line arguments for configuring the training process. You can pass these parameters directly via command line or through a JSON configuration file.
 
-Command-Line Arguments
-Argument	Type	Description
---config	str	Path to JSON config file with hyperparameters.
---log_dir	str	Directory to save logs.
---results_dir	str	Directory to save model checkpoints and config file. Default: results/.
---resume_checkpoint	str	Path to checkpoint to resume training.
---seed	int	Seed for random number generation. Default: 13.
---batch_size	int	Batch size for each device. Default: 2.
---total_token_batch_size	int	Total token batch size across devices. Default: 65536.
---max_lr	float	Maximum learning rate. Default: 6e-4.
---min_lr	float	Minimum learning rate after warmup. Default: 6e-5.
---grad_clip_value	float	Gradient clipping value. Default: 1.0.
---warmup_steps	int	Number of warmup steps for learning rate scheduler.
---max_steps	int	Maximum number of training steps. Default: 1000.
---max_epochs	int	Maximum number of epochs. Default: 1.
---check_every_step	int	Log every n steps. Default: 1.
---use_amp	bool	Enable mixed-precision (AMP) training. Default: True.
---data_stride_len	int	Length of the data stride for each batch. Default: 512.
---n_channels	int	Number of data channels in the input. Default: 5.
---mask_ratio	float	Ratio of masked patches for training. Default: 0.3.
---root_dir	str	Path to the data root directory.
---rank	int	Rank for distributed training. Default: 0.
---world_size	int	Total number of devices for distributed training. Default: torch.cuda.device_count().
+| Argument                  | Type    | Description                                                             |
+|---------------------------|---------|-------------------------------------------------------------------------|
+| `--config`                | str     | Path to JSON config file with hyperparameters.                          |
+| `--log_dir`               | str     | Directory to save logs.                                                 |
+| `--results_dir`           | str     | Directory to save model checkpoints and config file. Default: `results/`. |
+| `--resume_checkpoint`     | str     | Path to checkpoint to resume training.                                  |
+| `--seed`                  | int     | Seed for random number generation. Default: `13`.                       |
+| `--batch_size`            | int     | Batch size for each device. Default: `2`.                               |
+| `--total_token_batch_size`| int     | Total token batch size across devices. Default: `65536`.                |
+| `--max_lr`                | float   | Maximum learning rate. Default: `6e-4`.                                 |
+| `--min_lr`                | float   | Minimum learning rate after warmup. Default: `6e-5`.                    |
+| `--grad_clip_value`       | float   | Gradient clipping value. Default: `1.0`.                                |
+| `--warmup_steps`          | int     | Number of warmup steps for learning rate scheduler.                     |
+| `--max_steps`             | int     | Maximum number of training steps. Default: `1000`.                      |
+| `--max_epochs`            | int     | Maximum number of epochs. Default: `1`.                                 |
+| `--check_every_step`      | int     | Log every `n` steps. Default: `1`.                                      |
+| `--use_amp`               | bool    | Enable mixed-precision (AMP) training. Default: `True`.                 |
+| `--data_stride_len`       | int     | Length of the data stride for each batch. Default: `512`.               |
+| `--n_channels`            | int     | Number of data channels in the input. Default: `5`.                     |
+| `--mask_ratio`            | float   | Ratio of masked patches for training. Default: `0.3`.                   |
+| `--root_dir`              | str     | Path to the data root directory.                                        |
+| `--rank`                  | int     | Rank for distributed training. Default: `0`.                            |
+| `--world_size`            | int     | Total number of devices for distributed training. Default: `torch.cuda.device_count()`. |
+
 
 ## Running the Pre-Training Script
 
