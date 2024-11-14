@@ -1,6 +1,8 @@
 # Model Pre-Training
 
-This project provides a script for pre-training the MOMENT model on well-log data. The script includes features for distributed training, DeepSpeed optimization, checkpointing, and automatic resume functionality for interrupted training sessions.
+![image](https://github.com/user-attachments/assets/ea23fd7d-a39f-4649-ae57-35ca35573c4d)
+
+This project provides a script for pre-training of foundation time-series model on well-log data. The script includes features for distributed training, DeepSpeed optimization, checkpointing, and automatic resume functionality for interrupted training sessions.
 
 ## Prerequisites
 
